@@ -1,17 +1,13 @@
-import express, {Request, Response} from "express"
+import express, { Request, Response } from "express"
+import protectedRoute from "../../middlewares/protectedRoute"
+import { sendMessage, getMessages, getUsersForSidebar } from "../../controllers/message/message.controller"
 
 const router = express.Router()
 
-router.get("/login", (req: Request, res: Response) => {
-    res.send("Logged in successfully")
-})
+router.get("/conversations", protectedRoute, getUsersForSidebar)
+router.post("/send/:id", protectedRoute, sendMessage)
+router.get("/:id", protectedRoute, getMessages)
 
-router.get("/logout", (req: Request, res: Response) => {
-    res.send("Logged out successfully")
-})
 
-router.get("/signup", (req: Request, res: Response) => {
-    res.send("Signed up successfully")
-})
 
 export default router
