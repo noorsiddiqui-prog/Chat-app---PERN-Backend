@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import prisma from "../../db/prisma";
 import bcryptjs from "bcryptjs";
 import generateToken from "../../utils/generateToken";
+import { getReceiverSocketId } from "../../utils/helpers";
+import { io } from "../../socket/socket";
 
 
 export const sendMessage = async (req: Request, res: Response) => {
@@ -50,6 +52,12 @@ export const sendMessage = async (req: Request, res: Response) => {
 
         // socket io will connect
 
+        const receiverSocketId = getReceiverSocketId(receiverId)
+
+        if (receiverSocketId) {
+            io.to(receiverSocketId).emit("newMessage", newMessage)
+        }
+
         res.status(201).json(newMessage)
 
     } catch (error: any) {
@@ -81,7 +89,6 @@ export const getMessages = async (req: Request, res: Response) => {
         if (!conversation) {
             return res.status(200).json([]);
         }
-
         res.status(200).json(conversation.messages);
 
 

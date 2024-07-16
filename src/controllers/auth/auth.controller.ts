@@ -45,13 +45,14 @@ export const signup = async (req: Request, res: Response) => {
 
         if (newUser) {
 
-            generateToken(newUser.id, res)
+            const token = generateToken(newUser.id, res)
 
             res.status(201).json({
                 id: newUser.id,
                 fullName: newUser.fullName,
                 username: newUser.username,
                 profilePic: newUser.profilePic,
+                token: token
             });
         } else {
             res.status(400).json({ error: "Invalid user data " });
@@ -82,13 +83,14 @@ export const login = async (req: Request, res: Response) => {
             return res.status(401).json({ error: "Invalid credentials" });
         }
 
-        generateToken(user.id, res)
+        const token = generateToken(user.id, res)
 
         res.status(200).json({
             id: user.id,
             fullName: user.fullName,
             username: user.username,
             profilePic: user.profilePic,
+            token: token
         })
 
     } catch (error: any) {
