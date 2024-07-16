@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
 import prisma from "../../db/prisma";
-import bcryptjs from "bcryptjs";
-import generateToken from "../../utils/generateToken";
 import { getReceiverSocketId } from "../../utils/helpers";
 import { io } from "../../socket/socket";
 
