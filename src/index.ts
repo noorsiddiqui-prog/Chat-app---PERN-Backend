@@ -37,7 +37,7 @@
 //     console.log(`Server is running on port ${PORT}`);
 // })
 
-import express from "express";
+import express, { Request, Response } from "express";
 import authRoutes from "./routes/auth/auth.route.js";
 import messageRoutes from "./routes/message/message.route.js";
 import dotenv from "dotenv";
@@ -69,6 +69,11 @@ if (process.env.NODE_ENV !== 'development') {
         res.sendFile(path.resolve(process.cwd(), 'frontend', 'dist', 'index.html'));
     });
 }
+
+app.get("/", (req: Request, res: Response) => {
+    res.send("Hello, World!");
+});
+
 
 const server = app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
