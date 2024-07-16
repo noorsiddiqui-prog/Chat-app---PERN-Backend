@@ -64,7 +64,7 @@ app.use("/api/messages", messageRoutes);
 
 if (process.env.NODE_ENV !== 'development') {
     app.use(express.static(path.join(process.cwd(), 'frontend', 'dist')));
-    app.get("*", (req, res) => {
+    app.get("*", (req: Request, res: Response) => {
         res.sendFile(path.resolve(process.cwd(), 'frontend', 'dist', 'index.html'));
     });
 }
