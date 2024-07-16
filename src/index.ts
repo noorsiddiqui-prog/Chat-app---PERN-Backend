@@ -52,8 +52,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-    origin: '*', // Replace with your frontend URL
-    credentials: true // Enable cookies and other credentials
+    origin: process.env.FRONTEND_URL || "*", // Replace with your frontend URL
 }));
 
 app.use(cookieParser()); // parse cookies from request headers
