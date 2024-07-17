@@ -25,7 +25,7 @@ app.use("/api/messages", message_route_js_1.default);
 if (process.env.NODE_ENV !== 'development') {
     app.use(express_1.default.static(path_1.default.join(process.cwd(), 'frontend', 'dist')));
     app.get("*", (req, res) => {
-        res.sendFile(path_1.default.resolve(process.cwd(), 'frontend', 'dist', 'index.html'));
+        res.sendFile(path_1.default.resolve(process.cwd(), 'frontend', 'dist'));
     });
 }
 app.get("/", (req, res) => {

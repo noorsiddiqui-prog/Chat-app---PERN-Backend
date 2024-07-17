@@ -120,3 +120,4 @@ const getUsersForSidebar = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.getUsersForSidebar = getUsersForSidebar;
+//npx prisma db push
